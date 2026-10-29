@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Larex — Spec Sheet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    /* Direction: Product spec sheet. Swiss layout, mono data rows, crosshair cursor with coordinates. */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper: #efede7;
+      --ink: #121212;
+      --muted: #85827a;
+      --rule: rgba(18, 18, 18, 0.15);
+      --red: #e63312;
+      --gutter: 2rem;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Inter Tight", Helvetica, Arial, sans-serif;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .mono {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 1.25rem var(--gutter);
+      border-bottom: 1px solid var(--ink);
+      align-items: baseline;
+    }
+    header .logo { font-weight: 700; }
+    header .doc { color: var(--muted); }
+    header a { text-align: right; }
+    header a:hover { color: var(--red); }
+
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 1.25rem;
+      align-content: center;
+      padding: 3rem var(--gutter);
+      row-gap: 3rem;
+    }
+
+    .fig {
+      grid-column: 1 / 13;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+    }
+
+    h1 {
+      grid-column: 1 / 13;
+      font-size: clamp(3rem, 10vw, 10rem);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -0.06em;
+    }
+    h1 .r { color: var(--red); }
+
+    .specs {
+      grid-column: 1 / 8;
+      list-style: none;
+      border-top: 1px solid var(--ink);
+    }
+    .specs li {
+      display: grid;
+      grid-template-columns: 3rem 9rem 1fr;
+      gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+    .specs .k { color: var(--muted); }
+    .specs .v { font-size: 1.05rem; font-weight: 500; }
+    .specs a.v:hover { color: var(--red); }
+
+    .action {
+      grid-column: 9 / 13;
+      align-self: end;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--red);
+      color: var(--paper);
+      padding: 1.1rem 1.25rem;
+      font-weight: 500;
+      font-size: 1.05rem;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: var(--ink); }
+    .action .mono { color: var(--muted); }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem var(--gutter);
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+    }
+
+    /* Crosshair cursor */
+    .xh { position: fixed; pointer-events: none; z-index: 5; background: var(--red); opacity: 0; transition: opacity 0.3s; }
+    .xh.h { left: 0; right: 0; height: 1px; top: 0; }
+    .xh.v { top: 0; bottom: 0; width: 1px; left: 0; }
+    .coords {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 6;
+      background: var(--red);
+      color: var(--paper);
+      padding: 0.2rem 0.4rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-variant-numeric: tabular-nums;
+    }
+    body.tracking .xh { opacity: 0.35; }
+    body.tracking .coords { opacity: 1; }
+
+    @media (max-width: 800px) {
+      :root { --gutter: 1.25rem; }
+      header { grid-template-columns: 1fr 1fr; }
+      header .doc { display: none; }
+      .specs, .action { grid-column: 1 / 13; }
+      .specs li { grid-template-columns: 2rem 6.5rem 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="logo">The Larex</span>
+    <span class="mono doc">Doc. TLX-001 — Rev. A</span>
+    <a class="mono" href="mailto:hello@thelarex.com">Contact ↗</a>
+  </header>
+
+  <main>
+    <div class="fig mono"><span>Fig. 1</span><span>Product Studio</span></div>
+    <h1>Product Design<br /><span class="r">+</span> Development</h1>
+
+    <ul class="specs">
+      <li><span class="mono k">01</span><span class="mono k">Studio</span><span class="v">The Larex</span></li>
+      <li><span class="mono k">02</span><span class="mono k">Discipline</span><span class="v">Product Design</span></li>
+      <li><span class="mono k">03</span><span class="mono k">Discipline</span><span class="v">Product Development</span></li>
+      <li><span class="mono k">04</span><span class="mono k">Contact</span><a class="v" href="mailto:hello@thelarex.com">hello@thelarex.com</a></li>
+    </ul>
+
+    <div class="action">
+      <span class="mono">→ Next step</span>
+      <a class="btn" href="mailto:hello@thelarex.com">Get in touch <span>↗</span></a>
+    </div>
+  </main>
+
+  <footer>
+    <span class="mono">&copy; 2026 The Larex</span>
+    <span class="mono">Sheet 01 / 01</span>
+  </footer>
+
+  <div class="xh h" id="xh-h" aria-hidden="true"></div>
+  <div class="xh v" id="xh-v" aria-hidden="true"></div>
+  <div class="coords mono" id="coords" aria-hidden="true"></div>
+
+  <script>
+    if (matchMedia("(pointer: fine)").matches) {
+      const h = document.getElementById("xh-h");
+      const v = document.getElementById("xh-v");
+      const c = document.getElementById("coords");
+      const pad = (n) => String(Math.round(n)).padStart(4, "0");
+      addEventListener("pointermove", (e) => {
+        document.body.classList.add("tracking");
+        h.style.transform = `translateY(${e.clientY}px)`;
+        v.style.transform = `translateX(${e.clientX}px)`;
+        c.style.transform = `translate(${e.clientX + 10}px, ${e.clientY + 10}px)`;
+        c.textContent = `X ${pad(e.clientX)}  Y ${pad(e.clientY)}`;
+      });
+      document.addEventListener("pointerleave", () => document.body.classList.remove("tracking"));
+    }
+  </script>
+</body>
+</html>

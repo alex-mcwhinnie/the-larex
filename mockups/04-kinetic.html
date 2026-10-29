@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Larex — Kinetic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Direction: Loud and kinetic. Saturated colour, giant marquees, cursor blob. */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #2b2bff;
+      --fg: #f5f3ea;
+      --ink: #0e0e12;
+      --lime: #d9ff3f;
+    }
+
+    html, body { overflow-x: hidden; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Space Grotesk", sans-serif;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      cursor: none;
+    }
+
+    a { color: inherit; text-decoration: none; cursor: none; }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      font-weight: 500;
+      position: relative;
+      z-index: 2;
+    }
+    .logo { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.03em; }
+    .pill {
+      border: 1.5px solid var(--fg);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.9rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .pill:hover { background: var(--fg); color: var(--bg); }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.25rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .marquee {
+      display: flex;
+      white-space: nowrap;
+      font-size: clamp(4rem, 15vw, 14rem);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      user-select: none;
+    }
+    .marquee .track {
+      display: flex;
+      flex: none;
+      animation: scroll 22s linear infinite;
+    }
+    .marquee.rev .track { animation-direction: reverse; animation-duration: 28s; }
+    .marquee.outline { color: transparent; -webkit-text-stroke: 2px var(--fg); }
+    .marquee .track span { padding-right: 0.3em; }
+    .marquee .track span::after { content: "✺"; color: var(--lime); -webkit-text-stroke: 0; padding-left: 0.3em; font-size: 0.6em; vertical-align: 0.25em; }
+
+    @keyframes scroll { to { transform: translateX(-50%); } }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .bottom p { max-width: 22ch; font-size: 1.1rem; line-height: 1.3; }
+
+    .big-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--lime);
+      color: var(--ink);
+      padding: 1.1rem 1.6rem;
+      border-radius: 999px;
+      font-size: 1.15rem;
+      font-weight: 500;
+      transition: transform 0.3s cubic-bezier(0.3, 1.6, 0.5, 1);
+    }
+    .big-btn:hover { transform: rotate(-4deg) scale(1.06); }
+    .big-btn .arrow {
+      display: grid;
+      place-items: center;
+      width: 2rem; height: 2rem;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--lime);
+    }
+
+    footer {
+      background: var(--ink);
+      color: var(--fg);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .blob {
+      position: fixed;
+      top: 0; left: 0;
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 50%;
+      background: var(--lime);
+      mix-blend-mode: difference;
+      pointer-events: none;
+      z-index: 10;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s;
+    }
+    .blob.big { width: 6rem; height: 6rem; }
+
+    @media (pointer: coarse) {
+      body, a { cursor: auto; }
+      .blob { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="logo">The Larex®</span>
+    <a class="pill" href="mailto:hello@thelarex.com">Contact</a>
+  </header>
+
+  <main aria-label="Product Design and Development">
+    <div class="marquee" aria-hidden="true">
+      <div class="track"><span>Product Design</span><span>Product Design</span><span>Product Design</span><span>Product Design</span></div>
+    </div>
+    <div class="marquee rev outline" aria-hidden="true">
+      <div class="track"><span>Development</span><span>Development</span><span>Development</span><span>Development</span></div>
+    </div>
+  </main>
+
+  <div class="bottom">
+    <p>The Larex is a product design and development studio.</p>
+    <a class="big-btn" href="mailto:hello@thelarex.com">Get in touch <span class="arrow">↗</span></a>
+  </div>
+
+  <footer>
+    <span>&copy; 2026 The Larex</span>
+    <a href="mailto:hello@thelarex.com">hello@thelarex.com</a>
+  </footer>
+
+  <div class="blob" id="blob"></div>
+
+  <script>
+    const blob = document.getElementById("blob");
+    let x = innerWidth / 2, y = innerHeight / 2, bx = x, by = y;
+    addEventListener("pointermove", (e) => { x = e.clientX; y = e.clientY; });
+    document.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("mouseenter", () => blob.classList.add("big"));
+      a.addEventListener("mouseleave", () => blob.classList.remove("big"));
+    });
+    (function loop() {
+      bx += (x - bx) * 0.18;
+      by += (y - by) * 0.18;
+      blob.style.transform = `translate(${bx}px, ${by}px) translate(-50%, -50%)`;
+      requestAnimationFrame(loop);
+    })();
+  </script>
+</body>
+</html>
