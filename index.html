@@ -3,263 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Larex — Product Design & Development</title>
-  <meta name="description" content="The Larex is a product design and development studio." />
+  <title>The Larex — Product Design &amp; Development</title>
+  <meta name="description" content="The Larex is an independent product studio that designs, builds, and publishes its own apps for the web and iPhone, including Unabridged." />
   <meta name="theme-color" content="#f3f2ef" />
-  <meta property="og:title" content="The Larex — Product Design & Development" />
-  <meta property="og:description" content="The Larex is a product design and development studio." />
+  <meta property="og:title" content="The Larex — Product Design &amp; Development" />
+  <meta property="og:description" content="The Larex is an independent product studio that designs, builds, and publishes its own apps for the web and iPhone, including Unabridged." />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="The Larex" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='7' fill='%23151515'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
-  <style>
-    /* Design-tool canvas: dot grid, selected hero frame with live dimensions, and a pen visitors can draw with. */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #f3f2ef;
-      --dot: rgba(0, 0, 0, 0.14);
-      --ink: #151515;
-      --muted: #8a8780;
-      --sel: #2f6bff;
-      --pencil: #e2412a;
-      --panel: #ffffff;
-      --rule: rgba(0, 0, 0, 0.08);
-      --mono: "JetBrains Mono", ui-monospace, monospace;
-    }
-
-    body {
-      background-color: var(--bg);
-      background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
-      background-size: 22px 22px;
-      color: var(--ink);
-      font-family: "Inter Tight", Helvetica, Arial, sans-serif;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .mono {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.02em;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 1rem;
-      padding: 0.6rem 0.75rem 0.6rem 1rem;
-      background: var(--panel);
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-    }
-    .logo { font-weight: 700; display: flex; align-items: center; gap: 0.6rem; }
-    .logo i { width: 14px; height: 14px; border-radius: 4px; background: var(--ink); }
-    .crumbs { color: var(--muted); }
-    .crumbs b { color: var(--ink); font-weight: 400; }
-    .share {
-      background: var(--sel);
-      color: #fff;
-      padding: 0.45rem 0.9rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-    .share:hover { filter: brightness(1.1); }
-
-    main {
-      flex: 1;
-      display: grid;
-      place-items: center;
-      padding: 4rem 1.5rem 7rem;
-    }
-
-    .frame {
-      position: relative;
-      padding: 1.5rem 2rem;
-    }
-
-    .frame-label {
-      position: absolute;
-      left: 0;
-      top: -1.6rem;
-      color: var(--sel);
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .sel {
-      position: absolute;
-      inset: 0;
-      border: 1.5px solid var(--sel);
-      pointer-events: none;
-      animation: fade-in 0.4s ease 0.6s both;
-    }
-    .sel i {
-      position: absolute;
-      width: 9px; height: 9px;
-      background: #fff;
-      border: 1.5px solid var(--sel);
-    }
-    .sel i:nth-child(1) { left: -5px; top: -5px; }
-    .sel i:nth-child(2) { right: -5px; top: -5px; }
-    .sel i:nth-child(3) { left: -5px; bottom: -5px; }
-    .sel i:nth-child(4) { right: -5px; bottom: -5px; }
-    .sel i:nth-child(5) { left: calc(50% - 4.5px); top: -5px; }
-    .sel i:nth-child(6) { left: calc(50% - 4.5px); bottom: -5px; }
-
-    .size {
-      position: absolute;
-      left: 50%;
-      bottom: -2rem;
-      transform: translateX(-50%);
-      background: var(--sel);
-      color: #fff;
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-      animation: fade-in 0.4s ease 0.8s both;
-    }
-
-    @keyframes fade-in { from { opacity: 0; } }
-
-    .eyebrow { color: var(--muted); margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 0.1em; }
-
-    h1 {
-      font-size: clamp(2.8rem, 9vw, 8.5rem);
-      font-weight: 700;
-      line-height: 0.9;
-      letter-spacing: -0.06em;
-    }
-    h1 span { color: var(--muted); font-weight: 400; }
-
-    /* Floating toolbar */
-    .toolbar {
-      position: fixed;
-      left: 50%;
-      bottom: 1.25rem;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      padding: 0.4rem;
-      background: var(--ink);
-      color: #fff;
-      border-radius: 14px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
-      z-index: 2;
-    }
-    .tool {
-      display: grid;
-      place-items: center;
-      width: 2.4rem; height: 2.4rem;
-      border: 0;
-      border-radius: 9px;
-      background: transparent;
-      color: rgba(255,255,255,0.6);
-    }
-    button.tool { cursor: pointer; transition: background 0.15s, color 0.15s; }
-    button.tool:hover { color: #fff; }
-    .tool.on { background: var(--sel); color: #fff; }
-    .tool.pen.on { background: var(--pencil); }
-
-    .hint {
-      position: fixed;
-      left: 50%;
-      bottom: 5rem;
-      transform: translate(-50%, 6px);
-      background: var(--ink);
-      color: #fff;
-      padding: 0.35rem 0.6rem;
-      border-radius: 6px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s, transform 0.2s;
-      z-index: 4;
-      white-space: nowrap;
-    }
-    .hint.show { opacity: 1; transform: translate(-50%, 0); }
-
-    /* Visitor doodle layer */
-    #doodle {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      touch-action: none;
-    }
-    body.drawing #doodle { pointer-events: auto; cursor: crosshair; }
-    .tool svg { width: 18px; height: 18px; }
-    .sep { width: 1px; height: 1.5rem; background: rgba(255,255,255,0.15); margin: 0 0.35rem; }
-    .toolbar .cta {
-      padding: 0 1rem;
-      height: 2.4rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #fff;
-      color: var(--ink);
-      border-radius: 9px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      white-space: nowrap;
-    }
-    .toolbar .cta:hover { background: #e9e9e9; }
-
-    footer {
-      position: fixed;
-      left: 1.25rem;
-      bottom: 1.6rem;
-      color: var(--muted);
-    }
-    .zoom { position: fixed; right: 1.25rem; bottom: 1.6rem; color: var(--muted); }
-
-    @media (max-width: 760px) {
-      .crumbs, footer, .zoom, .tool.extra { display: none; }
-      .frame { padding: 1rem 1.25rem; }
-    }
-
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--sel);
-      outline-offset: 2px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
-<body>
-  <header>
-    <span class="logo"><i></i>The Larex</span>
-    <span class="crumbs mono">Studio / <b>Home</b></span>
-    <a class="share" href="mailto:hello@thelarex.com">Contact</a>
+<body class="has-toolbar">
+  <header class="site-header">
+    <a class="logo" href="index.html"><i></i>The Larex</a>
+    <nav class="site-nav mono" aria-label="Main">
+      <a href="unabridged.html">Apps</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="share" href="contact.html">Get in touch</a>
   </header>
 
-  <main>
-    <div class="frame" id="frame">
-      <span class="frame-label mono">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3 0v10M7 0v10M0 3h10M0 7h10" stroke="currentColor"/></svg>
-        Hero
-      </span>
-      <p class="eyebrow mono">Product Studio</p>
-      <h1>Product Design<br /><span>and</span> Development</h1>
-      <div class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      <span class="size mono" id="size" aria-hidden="true"></span>
-    </div>
-  </main>
+  <main id="main">
+    <section class="hero">
+      <div class="frame" id="frame">
+        <span class="frame-label mono"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M3 0v10M7 0v10M0 3h10M0 7h10" stroke="currentColor"/></svg>Hero</span>
+        <p class="eyebrow mono">Independent Product Studio</p>
+        <h1>Product Design<br /><span>and</span> Development</h1>
+        <div class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <span class="size mono" id="size" aria-hidden="true"></span>
+      </div>
+      <p class="lede">The Larex designs, builds, and publishes its own software for the web and iPhone.</p>
+    </section>
+
+    <section class="section" id="apps">
+      <div class="wrap">
+        <div class="frame">
+          <span class="frame-label mono"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M3 0v10M7 0v10M0 3h10M0 7h10" stroke="currentColor"/></svg>Apps / Unabridged</span>
+          <div class="product">
+            <div>
+              <div class="app-mark"><b aria-hidden="true">U</b><span class="tag mono">Our first app</span></div>
+              <h2>Unabridged</h2>
+              <p class="lede">A reading and listening tracker for audiobooks and print books. Search for a title, let Unabridged fill in the details, and keep your whole library in sync on every screen.</p>
+              <div class="platforms mono">
+            <span class="platform">Web <em>· Available now</em></span>
+            <span class="platform">iPhone <em>· Coming soon</em></span>
+          </div>
+              <div class="btn-row">
+                <a class="btn" href="unabridged.html">Learn more</a>
+                <a class="btn ghost" href="https://unabridged.app" rel="noopener">Visit unabridged.app ↗</a>
+              </div>
+            </div>
+            <div class="shots">
+          <img class="desktop" src="assets/unabridged/desktop-light.webp" width="1400" height="915" alt="The Unabridged library open in a desktop web browser, showing books in progress and reading stats for the year" />
+          <div class="phone"><img src="assets/unabridged/phone-light.webp" width="640" height="1391" alt="The Unabridged library on iPhone" loading="lazy" /></div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow mono">How we work</p>
+        <h2>Small studio. <span>Whole product.</span></h2>
+        <p class="lede">Every app we release is designed, built, and supported in-house, from the first sketch to the App Store listing to the support inbox.</p>
+        <div class="grid-3" style="margin-top:2.5rem">
+          <div><span class="mono">01 / Design</span><h3>Considered interfaces</h3><p>Clear, calm, and fast to use. Each screen is designed for the device it runs on, from phone to desktop browser.</p></div>
+          <div><span class="mono">02 / Build</span><h3>Web and native</h3><p>One product across the web and iOS, with your data synced securely between them.</p></div>
+          <div><span class="mono">03 / Support</span><h3>Maintained for the long run</h3><p>We fix bugs, ship updates, and answer support emails ourselves. Privacy comes first: no ads and no tracking.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="frame">
+          <span class="frame-label mono"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M3 0v10M7 0v10M0 3h10M0 7h10" stroke="currentColor"/></svg>Contact</span>
+          <div class="split">
+            <div>
+              <h2>Say hello.</h2>
+              <p class="lede">Questions, feedback, or press enquiries, we read every message.</p>
+            </div>
+            <div>
+              <ul class="facts">
+                <li><span>General</span><span><a class="link" href="mailto:hello@thelarex.com">hello@thelarex.com</a></span></li>
+                <li><span>Unabridged support</span><span><a class="link" href="mailto:hello@unabridged.app">hello@unabridged.app</a></span></li>
+              </ul>
+              <div class="btn-row"><a class="btn" href="contact.html">Contact page</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
   <canvas id="doodle" aria-hidden="true"></canvas>
-
   <span class="hint mono" id="hint">Draw anywhere · double-click to clear</span>
 
   <nav class="toolbar" aria-label="Tools and contact">
@@ -279,14 +120,24 @@
       <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h10M9 4v11"/></svg>
     </span>
     <span class="sep" aria-hidden="true"></span>
-    <a class="cta" href="mailto:hello@thelarex.com">Get in touch ↗</a>
+    <a class="cta" href="contact.html">Get in touch ↗</a>
   </nav>
+  </main>
 
-  <footer class="mono">&copy; 2026 The Larex</footer>
-  <span class="zoom mono" aria-hidden="true">100%</span>
-
+  <footer class="site-footer mono">
+    <div class="wrap">
+      <span>&copy; 2026 The Larex LLC. All rights reserved.</span>
+      <nav aria-label="Footer">
+        <a href="unabridged.html">Unabridged</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </div>
+  </footer>
   <script>
-    // Live W × H readout for the selected frame
+    // Live W × H readout for the selected hero frame
     const frame = document.getElementById("frame");
     const size = document.getElementById("size");
     const update = () => {
@@ -295,12 +146,14 @@
     };
     new ResizeObserver(update).observe(frame);
 
-    // Pen tool: visitors can doodle over the page
+    // Pen tool: visitors can doodle over the page. Points are stored in page
+    // coordinates so drawings stay attached to the content while scrolling.
     const canvas = document.getElementById("doodle");
     const ctx = canvas.getContext("2d");
     const move = document.getElementById("t-move");
     const pen = document.getElementById("t-pen");
     const hint = document.getElementById("hint");
+    const ink = getComputedStyle(document.documentElement).getPropertyValue("--pencil");
     let strokes = [];
     let current = null;
     let hintTimer;
@@ -317,7 +170,10 @@
 
     function redraw() {
       ctx.clearRect(0, 0, innerWidth, innerHeight);
-      ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--pencil");
+      if (!strokes.length) return;
+      ctx.save();
+      ctx.translate(-scrollX, -scrollY);
+      ctx.strokeStyle = ink;
       ctx.lineWidth = 3;
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
@@ -326,6 +182,7 @@
         s.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
         ctx.stroke();
       }
+      ctx.restore();
     }
 
     function setTool(drawing) {
@@ -340,23 +197,25 @@
     move.addEventListener("click", () => setTool(false));
     pen.addEventListener("click", () => setTool(!document.body.classList.contains("drawing")));
     addEventListener("keydown", (e) => {
+      if (e.target.closest("input, textarea")) return;
       if (e.key === "p" || e.key === "b") setTool(true);
       if (e.key === "v" || e.key === "Escape") setTool(false);
     });
 
     canvas.addEventListener("pointerdown", (e) => {
-      current = [[e.clientX, e.clientY]];
+      current = [[e.pageX, e.pageY]];
       strokes.push(current);
       canvas.setPointerCapture(e.pointerId);
     });
     canvas.addEventListener("pointermove", (e) => {
       if (!current) return;
-      current.push([e.clientX, e.clientY]);
+      current.push([e.pageX, e.pageY]);
       redraw();
     });
     canvas.addEventListener("pointerup", () => { current = null; });
     canvas.addEventListener("dblclick", () => { strokes = []; redraw(); });
 
+    addEventListener("scroll", redraw, { passive: true });
     addEventListener("resize", resize);
     resize();
   </script>
