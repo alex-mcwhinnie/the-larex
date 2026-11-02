@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css" />
 </head>
-<body class="has-toolbar">
+<body>
   <header class="site-header">
     <a class="logo" href="index.html"><i></i>The Larex</a>
     <nav class="site-nav mono" aria-label="Main">
@@ -216,6 +216,13 @@
     canvas.addEventListener("dblclick", () => { strokes = []; redraw(); });
 
     addEventListener("scroll", redraw, { passive: true });
+
+    // The toolbar belongs to the hero: hide it (and put the pen down) as soon as the visitor scrolls into the content
+    new IntersectionObserver(([entry]) => {
+      const past = !entry.isIntersecting;
+      document.body.classList.toggle("past-hero", past);
+      if (past) setTool(false);
+    }, { threshold: 0.85 }).observe(document.querySelector(".hero"));
     addEventListener("resize", resize);
     resize();
   </script>
